@@ -1,0 +1,119 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Affiliate Marketing Platform</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f0f2f5; margin:0; padding:0; }
+    .container { max-width: 800px; margin: 50px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);}
+    .section { display: none; }
+    .section.active { display: block; }
+    h2 { text-align: center; }
+    input, button { display:block; width:100%; margin:10px 0; padding:10px; }
+    button { cursor: pointer; }
+    #questions-form input, #questions-form select { width: 100%; margin-bottom: 10px; padding: 8px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Login Section -->
+  <div id="login-section" class="section active">
+    <h2>Login</h2>
+    <input type="text" id="login-username" placeholder="Username">
+    <input type="password" id="login-password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p style="text-align:center;">No account? <a href="#" onclick="showSection('signup')">Sign up</a></p>
+  </div>
+
+  <!-- Signup Section -->
+  <div id="signup-section" class="section">
+    <h2>Sign Up</h2>
+    <input type="text" id="signup-username" placeholder="Username">
+    <input type="password" id="signup-password" placeholder="Password">
+    <button onclick="signup()">Sign Up</button>
+    <p style="text-align:center;">Already have an account? <a href="#" onclick="showSection('login')">Login</a></p>
+  </div>
+
+  <!-- Dashboard / Dartboard Section -->
+  <div id="dashboard-section" class="section">
+    <h2>Dashboard / Dartboard</h2>
+    <p>Welcome to your affiliate marketing platform!</p>
+
+    <h3>Set Up Your Campaign</h3>
+    <form id="questions-form">
+      <label>What do you want to promote?</label>
+      <input type="text" placeholder="Product / Video / Affiliate program">
+
+      <label>Platform</label>
+      <select>
+        <option>Lazada</option>
+        <option>Shopee</option>
+        <option>TikTok</option>
+        <option>Other</option>
+      </select>
+
+      <label>Content Type</label>
+      <select>
+        <option>Faceless Video</option>
+        <option>Faceless Post</option>
+        <option>Product Demo</option>
+      </select>
+
+      <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+
+    <div id="output" style="margin-top:20px;"></div>
+  </div>
+</div>
+
+<script>
+  function showSection(section) {
+    document.getElementById('login-section').classList.remove('active');
+    document.getElementById('signup-section').classList.remove('active');
+    document.getElementById('dashboard-section').classList.remove('active');
+
+    if(section === 'login') document.getElementById('login-section').classList.add('active');
+    if(section === 'signup') document.getElementById('signup-section').classList.add('active');
+    if(section === 'dashboard') document.getElementById('dashboard-section').classList.add('active');
+  }
+
+  function login() {
+    // Simple demo login
+    const username = document.getElementById('login-username').value;
+    if(username) {
+      showSection('dashboard');
+    } else {
+      alert('Enter username to login!');
+    }
+  }
+
+  function signup() {
+    const username = document.getElementById('signup-username').value;
+    if(username) {
+      alert('Account created for ' + username);
+      showSection('dashboard');
+    } else {
+      alert('Enter username to signup!');
+    }
+  }
+
+  function submitForm() {
+    const product = document.querySelector('#questions-form input').value;
+    const platform = document.querySelectorAll('#questions-form select')[0].value;
+    const contentType = document.querySelectorAll('#questions-form select')[1].value;
+
+    document.getElementById('output').innerHTML = `
+      <h4>Campaign Summary</h4>
+      <p>Product/Video: ${product}</p>
+      <p>Platform: ${platform}</p>
+      <p>Content Type: ${contentType}</p>
+      <p>Next steps: Start creating content and promote to your audience!</p>
+    `;
+  }
+</script>
+
+</body>
+</html>
