@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>My Firebase App</title>
+</head>
+<body>
+  <h1>Hello Firebase!</h1>
+
+  <script type="module">
+    // Import Firebase core
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+    // ✅ Firebase config na nakuha mo
+    const firebaseConfig = {
+      apiKey: "AIzaSyAtkuKgN6Q1DktEKnppyCg_462henVLbLo",
+      authDomain: "affiliate-platform-a5aac.firebaseapp.com",
+      projectId: "affiliate-platform-a5aac",
+      storageBucket: "affiliate-platform-a5aac.firebasestorage.app",
+      messagingSenderId: "213480881493",
+      appId: "1:213480881493:web:9e22094c59d50fb0e6c3dc"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    console.log("Firebase initialized!", app);
+  </script>
+</body>
+</html>
